@@ -15,75 +15,82 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+  import Logo from '~/components/Logo.vue'
+  // import axios from 'axios'
+  import axios from '~/plugins/axios'
 
-export default {
-  components: {
-    Logo
-  },
-  data () {
-    return {
-      movieList: [
-        // {title: '肖申克的救赎', id: 1},
-        // {title: '大圣归来', id: 2},
-        // {title: '当幸福来敲门', id: 3}
-      ]
-    }
-  },
-  // 在nuxt中，生命周期函数只有created以及beforeCreate这两个生命周期函数能够在服务端正常使用
-  // 在nuxt中发异步请求不能在created生命周期函数中去发，因为它会在前端执行
-  created () {
-    // console.log('created');
-    // setTimeout(() => {
-    //   this.movieList = [
-    //     {title: '肖申克的救赎', id: 1},
-    //     {title: '大圣归来', id: 2},
-    //     {title: '当幸福来敲门', id: 3}
-    //   ]
-    // }, 1000);
-  },
-  // 发送异步请求，在asyncData函数中发送,服务器中发送请求
-  // asyncData(context, callback) {
-    // console.log(context);
-    // setTimeout(() => {
-    //   // callback有两个参数，第一个是错误对象，第二个是数据对象
-    //   callback(null, {
-    //     movieList: [
-    //       {title: '肖申克的救赎1', id: 1},
-    //       {title: '大圣归来1', id: 2},
-    //       {title: '当幸福来敲门1', id: 3}
+  export default {
+    components: {
+      Logo
+    },
+    data () {
+      return {
+        movieList: [
+          // {title: '肖申克的救赎', id: 1},
+          // {title: '大圣归来', id: 2},
+          // {title: '当幸福来敲门', id: 3}
+        ]
+      }
+    },
+    // 在nuxt中，生命周期函数只有created以及beforeCreate这两个生命周期函数能够在服务端正常使用
+    // 在nuxt中发异步请求不能在created生命周期函数中去发，因为它会在前端执行
+    // created () {
+    //   console.log('created');
+    //   setTimeout(() => {
+    //     this.movieList = [
+    //       {title: '肖申克的救赎', id: 1},
+    //       {title: '大圣归来', id: 2},
+    //       {title: '当幸福来敲门', id: 3}
     //     ]
+    //   }, 1000);
+    // },
+
+    // 发送异步请求，在asyncData函数中发送
+    // asyncData(context, callback) {
+    //   console.log(context);
+    //   setTimeout(() => {
+    //     // callback有两个参数，第一个是错误对象，第二个是数据对象
+    //     callback(null, {
+    //       movieList: [
+    //         {title: '肖申克的救赎1', id: 1},
+    //         {title: '大圣归来1', id: 2},
+    //         {title: '当幸福来敲门1', id: 3}
+    //       ]
+    //     })
+    //   }, 1000);
+    // },
+    // asyncData(context, callback) {
+    //   return new Promise((resolve, reject) => {
+    //     setTimeout(() => {
+    //       resolve({
+    //         movieList: [{title: '肖申克的救赎', id: 1},
+    //       {title: '大圣归来', id: 2},
+    //       {title: '当幸福来敲门', id: 3}]
+    //       })
+    //     }, 1000);
     //   })
-    // }, 1000);
-  // },
-  asyncData(context, callback) {
-    console.log(111)
-    console.log(context.route);
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve({
-          movieList: [{title: '肖申克的救赎2', id: 1},
-        {title: '大圣归来2', id: 2},
-        {title: '当幸福来敲门2', id: 3}]
+    //     .then(data => {
+    //       console.log(data);
+    //       callback(null, {movieList: data.movieList})
+    //     })
+    //     .catch(err => {
+    //       callback(err)
+    //       context.error(err)
+    //     })
+    // },
+    asyncData(context, callback) {
+      axios.get('/coming_soon')
+        .then(res => {
+          callback(null, {movieList: res.data})
         })
-      }, 1000);
-    })
-      .then(data => {
-        console.log(data);
-        callback(null, {movieList: data.movieList})
-      })
-      .catch(err => {
-        callback(err)
-        context.error(err)
-      })
-  },
-  methods: {
-    jumpTo() {
-      // this.$router.push({path: '/student'})
-      this.$router.push({name: 'student'})
+    },
+    methods: {
+      jumpTo() {
+        // this.$router.push({path: '/student'})
+        this.$router.push({name: 'student'})
+      }
     }
   }
-}
 </script>
 
 <style>

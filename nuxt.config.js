@@ -64,6 +64,6 @@ module.exports = {
       }
     },
     // 防止element-ui被多次打包
-    vendor: ['element-ui']
+    vendor: ['element-ui', 'axios']
   }
 }
