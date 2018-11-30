@@ -1,6 +1,7 @@
 <template>
   <div class="teacher">
-    <h3>这是教师列表页1</h3>
+    <!-- <mynav/> -->
+    <h3>这是教师列表页</h3>
     <ul>
       <li
         v-for="item in teacherList"
@@ -13,7 +14,13 @@
   </div>
 </template>
 <script>
+import Mynav from '~/components/Mynav'
 export default {
+  // 通过layout属性，指定当前页面使用的布局组件
+  layout: 'headerlayout',
+  components: {
+    Mynav
+  },
   data () {
     return {
       teacherList: [

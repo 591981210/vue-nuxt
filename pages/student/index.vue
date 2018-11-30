@@ -1,5 +1,6 @@
 <template>
   <div class="student">
+    <!-- <mynav/> -->
     <h3>这是学生列表页</h3>
     <ul>
       <li
@@ -11,16 +12,21 @@
   </div>
 </template>
 <script>
-  export default {
-    data () {
-      return {
-        stuList: [
-          {name: 'jack1', id: 1},
-          {name: 'jack2', id: 2},
-          {name: 'jack3', id: 3}
-        ]
-      }
+import Mynav from '~/components/Mynav'
+export default {
+  layout: 'headerlayout',
+  components: {
+    Mynav
+  },
+  data () {
+    return {
+      stuList: [
+        {name: 'jack1', id: 1},
+        {name: 'jack2', id: 2},
+        {name: 'jack3', id: 3}
+      ]
     }
   }
+}
 </script>
 
