@@ -27,13 +27,16 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/assets/styles/index.css'
+    '~/assets/styles/index.css',
+    'element-ui/lib/theme-chalk/index.css'
   ],
 
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+    // ssr: true表示这个插件只在服务端起作用
+    {src: '~/plugins/ElementUI', ssr: true }
   ],
 
   /*
@@ -59,6 +62,8 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
-    }
+    },
+    // 防止element-ui被多次打包
+    vendor: ['element-ui']
   }
 }

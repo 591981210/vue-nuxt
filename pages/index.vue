@@ -4,6 +4,7 @@
     <button @click="jumpTo">跳转到 student 页面</button>
     <!--a 标签相当于刷新页面-->
     <!--<a href="/student">跳转到 student 页面</a>-->
+    <el-button>测试el-button</el-button>
   </section>
 </template>
 
